@@ -10,9 +10,14 @@ from ..items import PttstockItem
 
 class PttstockcrawlerSpider(scrapy.Spider):
     name = 'PTTStockCrawler'
-    allowed_domains = ['www.ptt.cc']
-    start_urls = ['https://www.ptt.cc/bbs/Stock/M.1579010065.A.8FA.html']
-    cookies = {'over18': '1'}
+    #allowed_domains = ['www.ptt.cc']
+    
+    def __init__(self, start_urls, filename=None):
+        self.cookies = {'over18': '1'}
+        self.start_urls = start_urls
+        #self.allowed_domains = ['www.ptt.cc']
+        self.filename = filename
+        super().__init__()
     
     def start_requests(self):
         for url in self.start_urls:
